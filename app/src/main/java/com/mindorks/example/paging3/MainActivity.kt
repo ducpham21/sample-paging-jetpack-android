@@ -1,6 +1,7 @@
 package com.mindorks.example.paging3
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -29,6 +30,7 @@ class MainActivity : AppCompatActivity() {
     private fun setupView() {
         lifecycleScope.launch {
             viewModel.listData.collect {
+                Log.d("MainActivity", "$it")
                 mainListAdapter.submitData(it)
             }
         }
