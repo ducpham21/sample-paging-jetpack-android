@@ -12,5 +12,5 @@ class MainViewModel(private val apiService: APIService) : ViewModel() {
 
     val listData = Pager(PagingConfig(pageSize = 6)) {
         PostDataSource(apiService)
-    }.flow.cachedIn(viewModelScope)
+    }.flow
 }

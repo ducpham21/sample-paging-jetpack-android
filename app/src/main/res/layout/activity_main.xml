@@ -5,9 +5,12 @@
     android:layout_height="match_parent"
     tools:context="com.mindorks.example.paging3.MainActivity">
 
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        tools:listitem="@layout/list_item"
+        tools:itemCount="12"/>
 
 </LinearLayout>
