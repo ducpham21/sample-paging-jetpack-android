@@ -1,9 +1,11 @@
 package com.mindorks.example.paging3
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mindorks.example.paging.R
 import com.mindorks.example.paging3.adapter.MainListAdapter
@@ -32,6 +34,7 @@ class MainActivity : AppCompatActivity() {
                 mainListAdapter.submitData(it)
             }
         }
+
     }
 
     private fun setupList() {
@@ -40,6 +43,21 @@ class MainActivity : AppCompatActivity() {
             layoutManager = LinearLayoutManager(context)
             setHasFixedSize(true)
             adapter = mainListAdapter
+        }
+        mainListAdapter.addLoadStateListener {
+            handleState(it.append)
+            handleState(it.refresh)
+            handleState(it.prepend)
+        }
+    }
+
+    private fun handleState(state: LoadState) {
+        when(state){
+            is LoadState.Loading->{}
+            is LoadState.NotLoading->{}
+            is LoadState.Error->{
+                Toast.makeText(this, state.error.message, Toast.LENGTH_SHORT).show()
+            }
         }
     }
 
