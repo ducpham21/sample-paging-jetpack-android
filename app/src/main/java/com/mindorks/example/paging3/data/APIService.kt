@@ -11,8 +11,8 @@ import retrofit2.http.Query
 
 interface APIService {
 
-    @GET("entries")
-    suspend fun getListData(): Response<ApiResponse>
+    @GET("api/users")
+    suspend fun getListData(@Query("page") pageNumber: Int): Response<ApiResponse>
 
     companion object {
 
@@ -21,7 +21,7 @@ interface APIService {
             .build()
 
         fun getApiService() = Retrofit.Builder()
-            .baseUrl("https://api.publicapis.org/")
+            .baseUrl("https://reqres.in/")
             .addConverterFactory(MoshiConverterFactory.create(moshi))
             .build()
             .create(APIService::class.java)

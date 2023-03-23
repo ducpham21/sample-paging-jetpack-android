@@ -16,8 +16,9 @@ class MainListAdapter : PagingDataAdapter<Data, MainListAdapter.ViewHolder>(Data
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.itemView.textViewName.text =
-            "${getItem(position)?.api} ${getItem(position)?.category}"
-        holder.itemView.textViewEmail.text = getItem(position)?.description
+            "${getItem(position)?.firstName} ${getItem(position)?.lastName}"
+        holder.itemView.textViewEmail.text = getItem(position)?.email
+
     }
 
 
@@ -32,7 +33,7 @@ class MainListAdapter : PagingDataAdapter<Data, MainListAdapter.ViewHolder>(Data
     object DataDifferntiator : DiffUtil.ItemCallback<Data>() {
 
         override fun areItemsTheSame(oldItem: Data, newItem: Data): Boolean {
-            return oldItem.api == newItem.api
+            return oldItem.id == newItem.id
         }
 
         override fun areContentsTheSame(oldItem: Data, newItem: Data): Boolean {

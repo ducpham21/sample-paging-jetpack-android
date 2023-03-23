@@ -10,7 +10,7 @@ import com.mindorks.example.paging3.data.datasource.PostDataSource
 
 class MainViewModel(private val apiService: APIService) : ViewModel() {
 
-    val listData = Pager(PagingConfig(pageSize = 20, prefetchDistance = 20)) {
+    val listData = Pager(PagingConfig(pageSize = 6)) {
         PostDataSource(apiService)
-    }.flow.cachedIn(viewModelScope)
+    }.flow
 }
